@@ -116,9 +116,12 @@ public:
         }
 
         //- Solve each solute equation
-        void solve(const volVectorField& Us_,
-                   const fvModels& fvModels_,
-                   const fvConstraints& fvConstraints_);
+        void solve
+        (
+            const volVectorField& Us_,
+            const fvModels& fvModels_,
+            const fvConstraints& fvConstraints_
+         );
 
         //- Read base transportProperties dictionary
         bool read();

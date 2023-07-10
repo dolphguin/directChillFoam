@@ -86,7 +86,8 @@ bool Foam::fv::limitSolute::constrain(volScalarField& C) const
 {
     const labelList& cells = set_.cells();
     
-    if (C.name() != SName_ ){
+    if (C.name() != SName_ )
+    {
         return cells.size();
     }
 

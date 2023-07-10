@@ -67,15 +67,17 @@ Foam::multicomponentAlloy::multicomponentAlloy
     fvConstraints_(fvConstraints),
     alpha_(U.db().lookupObject<volScalarField>("alpha"))
 {
-    
 }
 
 
 // * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * * //
 
-void Foam::multicomponentAlloy::solve(const volVectorField& Us_,
-                                      const fvModels& fvModels_,
-                                      const fvConstraints& fvConstraints_ )
+void Foam::multicomponentAlloy::solve
+(
+    const volVectorField& Us_,
+    const fvModels& fvModels_,
+    const fvConstraints& fvConstraints_
+)
 {
     PtrList<entry> soluteData(lookup("solutes"));
     label solutei = 0;
@@ -83,7 +85,8 @@ void Foam::multicomponentAlloy::solve(const volVectorField& Us_,
     forAllIter(PtrDictionary<soluteModel>, solutes_, iter)
     {       
         volScalarField& C = iter();
-        surfaceScalarField phiRel = fvc::interpolate(rho_*(U_-Us_)) & mesh_.Sf();
+        surfaceScalarField phiRel =
+            fvc::interpolate(rho_*(U_-Us_)) & mesh_.Sf();
 
         iter().correct(soluteData[solutei++].dict());
 

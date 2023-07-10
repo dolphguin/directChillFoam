@@ -420,7 +420,7 @@ void Foam::mouldHTCFvPatchScalarField::updateCoeffs()
                 }
                 else
                 {
-		    refValue()[i] = (hpTa[i] + qr[i])/hp[i];
+                    refValue()[i] = (hpTa[i] + qr[i])/hp[i];
                     valueFraction()[i] = hp[i]/(hp[i] + kappaDeltaCoeffs[i]);
                 }
             }

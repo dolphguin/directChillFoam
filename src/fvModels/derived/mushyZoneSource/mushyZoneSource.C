@@ -222,7 +222,12 @@ Foam::fv::mushyZoneSource::mushyZoneSource
             IOobject::NO_WRITE
         ),
         mesh,
-        dimensionedVector("castingVelocity", dimVelocity, coeffs().lookup<vector>("castingVelocity"))
+        dimensionedVector
+        (
+            "castingVelocity",
+            dimVelocity,
+            coeffs().lookup<vector>("castingVelocity")
+        )
     ),
     tStar_(),
     mode_(thermoMode::thermo),
@@ -345,7 +350,8 @@ void Foam::fv::mushyZoneSource::addSup
         }
     }
 
-    const multicomponentAlloy& alloy = mesh().lookupObject<multicomponentAlloy>("soluteProperties");
+    const multicomponentAlloy& alloy =
+        mesh().lookupObject<multicomponentAlloy>("soluteProperties");
 
     forAllConstIter(PtrDictionary<soluteModel>, alloy.solutes(), iter)
     {
@@ -360,7 +366,10 @@ void Foam::fv::mushyZoneSource::addSup
 
             if (T[celli] > Tsol_)
             {
-                vector Sb = rhoRef_*g*solute.beta().value()*(C[celli] - solute.C0().value());
+                vector Sb =
+                    rhoRef_*g*solute.beta().value()
+                   *(C[celli] - solute.C0().value());
+
                 Su[celli] += Vc*Sb;
             }
         }
