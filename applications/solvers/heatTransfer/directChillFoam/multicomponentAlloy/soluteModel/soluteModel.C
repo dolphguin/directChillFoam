@@ -50,7 +50,7 @@ Foam::soluteModel::soluteModel
     ),
     name_(soluteName),
     soluteDict_(soluteDict),
-    interpolate_(soluteDict.lookupOrDefault<word>("interpolate", "no")),
+    interpolate_(soluteDict.lookupOrDefault<Switch>("interpolate", false)),
     D_l_
     (
         "D_l",
@@ -144,14 +144,23 @@ void Foam::soluteModel::correct(const dictionary& soluteDict)
     soluteDict_ = soluteDict;
     const volScalarField& C_ = *this;
 
-    if (interpolate_ == "yes") {
-        autoPtr<Function1<scalar>> cl_curve(Function1<scalar>::New(groupName("C_l", this->name()), soluteDict_));
+    if (interpolate_)
+    {
+        autoPtr<Function1<scalar>> cl_curve
+        (
+            Function1<scalar>::New
+            (
+                groupName("C_l", this->name()),
+                soluteDict_
+            )
+        );
         forAll(C_l_, i)
         {
             C_l_[i] = cl_curve->value(alpha_[i]);
         }
     }
-    else {
+    else
+    {
         C_l_ = C_/(1.0 + (1.0 - alpha_)*(this->kp() - 1.0));
     }
 
@@ -174,10 +183,12 @@ void Foam::soluteModel::solve(const surfaceScalarField& phiRel)
 bool Foam::soluteModel::read(const dictionary& soluteDict)
 {
     soluteDict_ = soluteDict;
-
+    soluteDict_.lookupOrDefault<Switch>("interpolate", false) >> interpolate_;
     soluteDict_.lookup("D_l") >> D_l_.value();
     soluteDict_.lookup("kp") >> kp_.value();
+    soluteDict_.lookup("C0") >> C0_.value();
     soluteDict_.lookup("Ceut") >> Ceut_.value();
+    soluteDict_.lookup("beta") >> beta_.value();
 
     return true;
 }

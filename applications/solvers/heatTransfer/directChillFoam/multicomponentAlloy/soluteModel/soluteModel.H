@@ -56,7 +56,7 @@ class soluteModel
         dictionary soluteDict_;
 
         //- Interpolate C_l or use kp
-        word interpolate_;
+        Switch interpolate_;
 
         //- Liquid mass diffusion coefficient
         dimensionedScalar D_l_;
@@ -141,7 +141,7 @@ public:
             return name();
         }
 
-        const word& interpolate() const
+        const Switch& interpolate() const
         {
             return interpolate_;
         }
