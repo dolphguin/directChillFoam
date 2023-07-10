@@ -53,6 +53,8 @@ Usage
               
               Tsol            273;
               L               334000;
+              castingVelocity (0 0 -1e-3);
+              tStar           table ((0.0 273) (0.3 273.5) ... (1.0 293));
               thermoMode      thermo;
               beta            50e-6;
               rhoRef          800;
