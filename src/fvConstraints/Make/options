@@ -1,5 +1,7 @@
+DCHFOAM_PROJECT_DIR=../..
+
 EXE_INC = \
-    -I$(WM_PROJECT_USER_DIR)/applications/solvers/heatTransfer/directChillFoam/multicomponentAlloy/lnInclude \
+    -I$(DCHFOAM_PROJECT_DIR)/applications/solvers/heatTransfer/directChillFoam/multicomponentAlloy/lnInclude \
     -I$(LIB_SRC)/finiteVolume/lnInclude \
     -I$(LIB_SRC)/fvConstraints/lnInclude \
     -I$(LIB_SRC)/meshTools/lnInclude \
