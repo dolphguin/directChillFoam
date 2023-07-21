@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Source tutorial run functions
+source $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+# Get application name
+application=`getApplication`
+
+if [ ! -f *.foam ]; then
+    touch $application.foam
+fi
+
+if [ ! -f log.decomposePar ]; then
+    ./Allrun.pre
+fi
+
+# Run
+runParallel $application
+
+
+#------------------------------------------------------------------------------
