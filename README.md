@@ -8,7 +8,7 @@
 
 ## INITIAL NOTE  
 
-  This is just a fork from [[https://github.com/blebon/directChillFoam]]
+  This is just a fork from [https://github.com/blebon/directChillFoam](https://github.com/blebon/directChillFoam)
   that I've started for private purposes. Mainly porting the code to other versions,
   testing capabilities & playing around with it, so do not expect any major modification
   from it.
@@ -19,7 +19,7 @@
   so use it only under your own risk!
 
   Lastly, remember to always keep track of the original authorships
-  ([[https://www.gnu.org/licenses/quick-guide-gplv3.html][GNU-GPLv3]]).
+  ([GNU-GPLv3](https://www.gnu.org/licenses/quick-guide-gplv3.html)).
 
 ## About OpenFOAM  
 
