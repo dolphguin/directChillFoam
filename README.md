@@ -6,6 +6,21 @@
 [![docs](https://img.shields.io/readthedocs/d?color=green)](https://blebon.com/directChillFoam)
 <!-- badges: end -->
 
+## INITIAL NOTE  
+
+  This is just a fork from [[https://github.com/blebon/directChillFoam]]
+  that I've started for private purposes. Mainly porting the code to other versions,
+  testing capabilities & playing around with it, so do not expect any major modification
+  from it.
+
+  Just for sake of clarity: There is no official endorsement for this initiative,
+  neither from the original authors nor from their supporting institutions. Similarly,
+  there is no warranty about the correctness of any material present at this fork,
+  so use it only under your own risk!
+
+  Lastly, remember to always keep track of the original authorships
+  ([[https://www.gnu.org/licenses/quick-guide-gplv3.html][GNU-GPLv3]]).
+
 ## About OpenFOAM  
 
   OpenFOAM is a free, open source computational fluid dynamics (CFD) software
@@ -50,9 +65,11 @@
   Transfer **124** (2002) 947-953. <https://doi.org/10.1115/1.1482089>
   2. B. Lebon, H.T. Li, J.B. Patel, H. Assadi and Z.Fan, "Numerical modelling of melt-conditioned direct-chill casting", Applied Mathematical Modelling **77** (2020) 1310-1330. <https://doi.org/10.1016/j.apm.2019.08.032>
   3. T. Subroto, B. Lebon, D. Eskin, I. Skalicky, D. Roberts, I. Tzanakis and et al., "Numerical modelling and experimental validation of the effect of ultrasonic melt treatment in a direct-chill cast AA6008 alloy billet", Journal of Materials Research and Technology **12** (2021) 1582-1596. <https://doi.org/10.1016/j.jmrt.2021.03.061>
+  4. M. Bellet, H. Combeau, Y. Fautrelle, D. Gobin, M. Rady, E. Arquis, O. Budenkova, B. Dussoubs, Y. Duterrail, A. Kumar, C.A. Gandin, B. Goyeau, S. Mosbah, M. Založnik, "Call for contributions to a numerical benchmark problem for 2D columnar solidification of binary alloys", International Journal of Thermal Sciences **48(11)** (2009) 2013-2016. <https://doi.org/10.1016/j.ijthermalsci.2009.07.024>
 
-* [DC Casting solver](applications/solvers/heatTransfer/directChillFoam) - Updated verions of the DC casting solver
+* [DC Casting solver](applications/solvers/heatTransfer/directChillFoam) - Updated versions of the DC casting solver
 * [Vreeman2002](tutorials/heatTransfer/directChillFoam/Vreeman2002) - Tutorial case corresponding to Vreeman *et al.* (2002).
 * [Lebon2020](tutorials/heatTransfer/directChillFoam/Lebon2020) - Tutorial case corresponding to Lebon *et al.* (2020).
 * [Subroto2021](tutorials/heatTransfer/directChillFoam/Subroto2021) - Tutorial case corresponding to Subroto *et al.* (2021).
+* [Pb18wtSn -ongoing work-](tutorials/heatTransfer/directChillFoam/Pb18wtSn) - Tutorial case corresponding to Bellet *et al.* (2009).
 * [Documentation](https://blebon.com/directChillFoam/) - Documentation
