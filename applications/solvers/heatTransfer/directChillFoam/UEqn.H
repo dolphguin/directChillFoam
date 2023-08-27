@@ -1,25 +1,22 @@
     // Solve the Momentum equation
-    alpha = melt1_alpha1;
 
     MRF.correctBoundaryVelocity(U);
 
-    // In preparation for macrosegregation handling
-    volScalarField gl("gl", alpha);
-    forAll(gl, i)
-    {
-        if (alpha[i] < g_env.value())
-        {
-            gl[i] = 0.0;
-        }
-        else
-        {
-            gl[i] =
-                rho2.value()
-              /(rho1.value()*((1.0/alpha[i]) - 1.0) + rho2.value());
-        }
-    }
+//TODO: this should be a runtime-selectable model instead
+{
+    const volScalarField& mu (thermo.mu());
 
-    Us = U + gl * (rho1 - rho2) * DAS*DAS * g / (18 * mu);
+    const volScalarField& alpha (alphafvModel);
+
+    const volScalarField gl
+    (
+        rho2
+     / (rho1*(1.0/max(alpha, small) - 1.0) + rho2)
+      * pos0(alpha - g_env) // else -> gl = 0.0
+    );
+
+    Us = U + gl*(rho1 - rho2)*g*sqr(DAS)/(18*mu);
+}
 
     tmp<fvVectorMatrix> tUEqn
     (

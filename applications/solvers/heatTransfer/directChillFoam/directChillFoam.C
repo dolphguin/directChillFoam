@@ -61,6 +61,7 @@ int main(int argc, char *argv[])
     #include "createDyMControls.H"
     #include "initContinuityErrs.H"
     #include "createFields.H"
+    #include "createFieldRefs.H"
     #include "createRhoUfIfPresent.H"
 
     turbulence->validate();
@@ -106,17 +107,20 @@ int main(int argc, char *argv[])
 
         Info<< "Time = " << runTime.timeName() << nl << endl;
 
-        int nEnergyCorrectors
+        const label nEnergyCorrectors
         (
-            pimple.dict().lookupOrDefault<int>("nEnergyCorrectors", 1)
+            pimple.dict().lookupOrDefault<label>("nEnergyCorrectors", 1)
         );
+
+        //WARNING: hardcoded field from a fvModel of type "mushyZoneSource",
+        // named "melt1"
+        //TODO: avoid solver-fvModel mutual dependency
+        const volScalarField& alphafvModel =
+        mesh.lookupObject<volScalarField>("melt1_alpha1");
 
         // --- Pressure-velocity PIMPLE corrector loop
         while (pimple.loop())
         {
-            const volScalarField& melt1_alpha1 =
-                mesh.lookupObject<volScalarField>("melt1_alpha1");
-
             if (!pimple.flow())
             {
                 if (pimple.models())
@@ -196,7 +200,6 @@ int main(int argc, char *argv[])
         }
 
         rho = thermo.rho();
-        mu = thermo.mu();
 
         runTime.write();
 

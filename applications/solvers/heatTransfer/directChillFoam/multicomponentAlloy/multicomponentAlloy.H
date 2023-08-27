@@ -63,11 +63,9 @@ private:
         const fvMesh& mesh_;
         const volVectorField& U_;
         const volScalarField& rho_;
-        const dimensionedScalar& rho2_;
         const surfaceScalarField& phi_;
         const fvModels& fvModels_;
         const fvConstraints& fvConstraints_;
-        const volScalarField& alpha_;
 
 public:
 
@@ -79,7 +77,6 @@ public:
             const word& alloyName,
             const volVectorField& U,
             const volScalarField& rho,
-            const dimensionedScalar& rho2,
             const surfaceScalarField& phi,
             const fvModels& fvModels,
             const fvConstraints& fvConstraints
@@ -120,8 +117,9 @@ public:
         (
             const volVectorField& Us_,
             const fvModels& fvModels_,
-            const fvConstraints& fvConstraints_
-         );
+            const fvConstraints& fvConstraints_,
+            const volScalarField& alpha_
+        );
 
         //- Read base transportProperties dictionary
         bool read();

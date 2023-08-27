@@ -16,9 +16,9 @@ FoamFile
 
 g_env           [ 0 0 0 0 0 0 0 ] 0.7;      // Coherency fraction
 rho1            [ 1 -3 0 0 0 0 0 ] 9250;    // Solid density
-rho2            [ 1 -3 0 0 0 0 0 ] 9250;    // Liquid density
-mu1             [ 1 -1 -1 0 0 0 0 ] 1.1e-3; // Not required, but implementation requires a non-zero value
-mu2             [ 1 -1 -1 0 0 0 0 ] 1.1e-3; // Dynamic viscosity (of liquid)
+rho2            [ 1 -3 0 0 0 0 0 ] 9250;
+//mu1             [ 1 -1 -1 0 0 0 0 ] 1.1e-3; // Not required
+//mu2             [ 1 -1 -1 0 0 0 0 ] 1.1e-3; // Not required
 DAS             [ 0 1 0 0 0 0 0 ] 0.185e-3; // Dendrite arm spacing
 
 

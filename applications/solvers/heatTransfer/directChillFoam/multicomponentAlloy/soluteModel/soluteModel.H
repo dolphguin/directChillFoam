@@ -82,8 +82,6 @@ class soluteModel
         //- Solute expansion coefficient
         dimensionedScalar beta_;
 
-        //- Liquid fraction field
-        const volScalarField& alpha_;
 public:
 
     // Constructors
@@ -202,7 +200,11 @@ public:
         }  
 
         //- Correct the solute properties
-        void correct(const dictionary& soluteDict);
+        void correct
+        (
+            const dictionary& soluteDict,
+            const volScalarField& alpha_
+        );
 
         //- Solve the solute equation
         void solve(const surfaceScalarField& phiRel);

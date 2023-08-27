@@ -117,8 +117,7 @@ Foam::soluteModel::soluteModel
         "beta",
         dimless,
         soluteDict_
-    ),
-    alpha_(mesh.lookupObject<volScalarField>("alpha"))
+    )
 {
 
 }
@@ -139,7 +138,11 @@ Foam::autoPtr<Foam::soluteModel> Foam::soluteModel::clone() const
 }
 
 
-void Foam::soluteModel::correct(const dictionary& soluteDict)
+void Foam::soluteModel::correct
+(
+    const dictionary& soluteDict,
+    const volScalarField& alpha_
+)
 {
     soluteDict_ = soluteDict;
     const volScalarField& C_ = *this;

@@ -36,7 +36,6 @@ Foam::multicomponentAlloy::multicomponentAlloy
     const word& alloyName,
     const volVectorField& U,
     const volScalarField& rho,
-    const dimensionedScalar& rho2,
     const surfaceScalarField& phi,
     const fvModels& fvModels,
     const fvConstraints& fvConstraints
@@ -61,11 +60,9 @@ Foam::multicomponentAlloy::multicomponentAlloy
     mesh_(U.mesh()),
     U_(U),
     rho_(rho),
-    rho2_(rho2),
     phi_(phi),
     fvModels_(fvModels),
-    fvConstraints_(fvConstraints),
-    alpha_(U.db().lookupObject<volScalarField>("alpha"))
+    fvConstraints_(fvConstraints)
 {
 }
 
@@ -76,19 +73,20 @@ void Foam::multicomponentAlloy::solve
 (
     const volVectorField& Us_,
     const fvModels& fvModels_,
-    const fvConstraints& fvConstraints_
+    const fvConstraints& fvConstraints_,
+    const volScalarField& alpha_
 )
 {
     PtrList<entry> soluteData(lookup("solutes"));
     label solutei = 0;
 
     forAllIter(PtrDictionary<soluteModel>, solutes_, iter)
-    {       
+    {
         volScalarField& C = iter();
         surfaceScalarField phiRel =
             fvc::interpolate(rho_*(U_-Us_)) & mesh_.Sf();
 
-        iter().correct(soluteData[solutei++].dict());
+        iter().correct(soluteData[solutei++].dict(), alpha_);
 
         C.correctBoundaryConditions();
 
